@@ -1,0 +1,91 @@
+<!DOCTYPE html5>
+<html>
+
+<head>
+	<title>Account Details</title>
+	<h3>
+		<center>Account Details</center>
+	</h3>
+</head>
+<style>
+	body {
+	background-color: #99e3f3;
+		}
+</style>
+
+<body>
+	<button onclick="viewtran()">view all accounts</button>
+	<form onsubmit="viewacclist()">
+		<br /> Enter AccNo:<input type="number" id="number" name="number">
+		<button type="submit">Submit</button>
+		<a href="adminpage.html" class="c">Back</a>
+	</form>
+	<div id="container">
+		<table border="1" class="table table-bordered">
+			<thead>
+				<tr>
+					<th>S.No</th>
+					<th>CustomerId</th>
+					<th>AccountNo</th>
+					<th>AccountType</th>
+					<th>AvailableBalance</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody id="BeneTbl">
+			</tbody>
+		</table>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script>
+		$("#container").hide();
+		function viewacclist() {
+			event.preventDefault();
+			$("#container").hide();
+			var no = document.getElementById("number").value;
+			if ((no== "")) {
+				alert("account number not entered");
+				$("#container").hide();
+			}
+			else {
+				let url = "http://localhost:9000/api/listAccountDetailsByAccNo?accNo="+no;
+				//let url="http://localhost:9000/api/listAccountDetailsByAccNo?accNo=1023457782";
+				$.getJSON(url, function (response) {
+					$("#container").show();
+					var bene = response;
+					//alert(JSON.stringify(response));
+					gettran(bene);
+				});
+				return true;
+			}
+		}
+			function viewtran() {
+				event.preventDefault();
+				$("#container").hide();
+
+				var url = "http://localhost:9000/api/listAccountDetails";
+
+				$.getJSON(url, function (response) {
+					$("#container").show();
+					var bene = response;
+					//alert(JSON.stringify(response));
+					gettran(bene);
+				});
+				return true;
+			}
+			function gettran(bene) {
+				$("#BeneTbl").empty();
+				var row = "";
+				var j = 1;
+				for (var i = 0; i < bene.length; i++) {
+					var Obj = bene[i];
+					row = row + "<tr><td>" + j + "</td><td>" + Obj.customerId + "</td><td>" + Obj.accNo + "</td><td>" + Obj.accType + "</td><td>" + Obj.availableBalance + "</td><td>" + Obj.status + "</td></tr>";
+					j = j + 1;
+				}
+				//alert(row);
+				$("#BeneTbl").append(row);
+			}
+	</script>
+</body>
+
+</html>

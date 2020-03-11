@@ -1,0 +1,32 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Update Account</title>
+<center>Update Account</center>
+</head>
+<style>
+	body {
+	background-color: #99e3f3;
+		}
+</style>
+
+<body>
+	<center>
+		<form onsubmit="validate()">
+		<br /> Enter AccNo:<input type="number" name="accNo" id="accNo"
+			placeholder="Account Number" required autofocus> <br /> <br />
+		Enter amount:<input type="number" name="price"  id="price"placeholder="amount"
+			required> <br /> <br />
+		<font color="red" style="font-size: 20px"></font>
+		
+		<br /> <br />
+		<button type="submit" class="btn btn-primary" data-toggle="button"
+			aria-pressed="false">Submit</button>
+			<a href="adminpage.html" class="c">Back</a>
+	</form>
+</center>
+</body>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="updateaccount.js"></script>
+</html>

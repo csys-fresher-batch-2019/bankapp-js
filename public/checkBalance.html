@@ -1,0 +1,103 @@
+<!DOCTYPE html5>
+<html>
+
+<head>
+	<h5>
+		<jsp:include page="creditCardPage.jsp"></jsp:include>
+	</h5>
+</head>
+<style>
+	* {
+		font-family: monospace;
+		font-style: normal;
+		color: grey;
+		font-size: 30px;
+	}
+
+	body {
+		width: 100%;
+	}
+
+	.a {
+		font-family: monospace;
+		font-size: 20px;
+		font-style: italic;
+		color: red;
+		background-color: #34b5c9;
+	}
+
+
+	.a img {
+		display: block;
+		margin: 80px auto;
+	}
+
+	.container {
+		z-index: 100;
+		background-color: aliceblue;
+		position: absolute;
+		width: 240px;
+		height: 150px;
+		left: 41.8%;
+		top: 32.5%;
+		text-align: center;
+		background-color: #cfd6e9;
+		/* color: #34b5c9; */
+	}
+
+	.container p:first {
+		display: block;
+		font-family: monospace;
+		font-style: normal;
+		color: grey;
+		font-size: 30px;
+	}
+
+	.container .span{
+		display: inline;
+	}
+</style>
+
+<body class="a">
+
+	<!-- <marquee>
+		<h2>
+			<p style="font-family: georgia; font-size: 30px; font-style: italic; color: red;">
+				AVAILABLE BALANCE</p>Rs.<p id="demo"></p>
+		</h2>
+	</marquee> -->
+
+	<div class="container">
+		<p>Balance <br> &#8377;<span id="demo"></span> </p>
+		
+	</div>
+
+	<img src="assets\images\giphy (1).gif" alt="accountBalance">
+
+
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script>
+		var balance = sessionStorage.getItem("availableBalance");
+		/*console.log(balance);
+		$("#balance").val(balance);*/
+		document.getElementById("demo").innerHTML = balance;
+	</script>
+	<script>
+
+		$(document).ready(function () {
+			$(".container").hide();
+			setTimeout(showFunction, 5000);
+		});
+
+
+		function showFunction() {
+			$(".container").show();
+		}
+
+
+
+	</script>
+</body>
+
+</html>

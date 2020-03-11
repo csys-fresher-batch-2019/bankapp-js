@@ -1,0 +1,38 @@
+<!DOCTYPE html5>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Activate Account</title>
+
+	<h3>
+		<center>Active/Deactive Account</center>
+	</h3>
+</head>
+<style>
+	body {
+		background-color: #99e3f3;
+	}
+</style>
+
+<body>
+	<center>
+		<form onsubmit="validate()">
+			<br /> Enter AccNo:<input type="number" name="accNo" id="accNo" placeholder="Account Number" minlength="10"
+				required autofocus> <br /> <br />
+			Enter Status:<select id="status" name="status">
+				<option value="active">active</option>
+				<option value="inactive">inactive</option>
+			</select><br /> <br />
+
+			<font color="red" style="font-size: 20px"></font>
+			<br />
+			<button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">Submit</button>
+			<a href="adminpage.html" class="c">Back</a>
+		</form>
+	</center>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="actdeact.js"></script>
+</body>
+
+</html>

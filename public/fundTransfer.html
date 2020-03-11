@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+	<title>Fund Transfer</title>
+</head>
+<style>
+	body {
+	background-color: #34b5c9;
+		}
+</style>
+<body>
+<center>
+	<form onsubmit="validate()">
+	<br> Enter Account No:<input type="number" name="no" id="no" readonly>
+	<br/>
+	<br> Enter BeneAcc No:<input type="number" name="beneAccNo" id="beneAccNo" placeholder="Beneficiary Account Number" required>
+	<br/>
+	<br> Enter Amount:<input type="text" name="amount" id="amount" placeholder="Amount" required>
+	<br/>
+	<br><button type="submit">Submit</button>
+	<a href="userpage.html" class="c">Back</a>
+	</form>
+</center>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="fundtransfer.js"></script>
+	<script>
+		var accNo = sessionStorage.getItem("accountNumber");
+		$("#no").val(accNo);
+	</script>
+</body>
+
+</html>

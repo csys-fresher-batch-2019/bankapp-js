@@ -1,0 +1,46 @@
+<html>
+
+<head>
+	<title>Add Beneficiary</title>
+	<h3>
+		<center>Add Beneficiary</center>
+	</h3>
+</head>
+<style>
+	body {
+	background-color: #34b5c9;
+		}
+</style>
+<body>
+	<center>
+		<form onsubmit="validate()">
+			<br /> <br />
+
+			<font color="red" style="font-size: 25"></font>
+			<br /> Enter Account Number:<input type="number" name="acc" id="acc" readonly> <br /> <br /> Enter
+			Beneficiary
+			Name:<input type="text" name="name" id="name" placeholder="Beneficiary Name" required autofocus> <br />
+			<br /> Enter Account No:<input type="number" name="accNo" id="accNo" placeholder="Account Number" required>
+			<br /> <br /> Enter IFSC Code:<input type="text" name="ifsc" id="ifsc" placeholder="IFSC Code" required>
+			<br /> <br />
+
+			<font color="red" style="font-size: 20"></font>
+
+			<br />
+			<button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">Submit</button>
+			<br /> <br />
+			<a href="userpage.html" class="c">Back</a>
+		</form>
+	</center>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="addbene.js"></script>
+	<script>
+
+		var accNo = sessionStorage.getItem("accountNumber");
+		console.log(accNo);
+		$("#acc").val(accNo);
+	</script>
+</body>
+
+</html>

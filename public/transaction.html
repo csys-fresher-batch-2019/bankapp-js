@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<h3>
+	<center>Account Transaction History</center>
+</h3>
+</head>
+<style>
+	body {
+	background-color: #99e3f3;
+		}
+</style>
+<body>
+	<button onclick="viewtran()">view all transaction</button>
+	<form onsubmit="viewtrans()"> 
+		<br /> Enter AccNo:<input type="number" id="number" name="accNo">
+		<button type="submit" class="btn btn-primary" data-toggle="button"
+			aria-pressed="false">Submit</button>
+			<a href="adminpage.html" class="c">Back</a>
+	</form>
+	
+<div id="container">
+	<table border="1" class="table table-bordered">
+		<thead><tr><th>S.No</th><th>Transaction id</th><th>Account Number</th><th>Beneficiary Account Number</th><th>Transaction Date</th><th>Transaction Amount</th><th>Status</th></tr></thead>
+		<tbody id="BeneTbl">
+		</tbody>
+	</table>
+<body>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+	$("#container").hide();
+	function viewtrans(){
+		event.preventDefault();
+		$("#container").hide();
+		var number = document.getElementById("number").value;
+		if ((number == "")) {
+				alert("account number not entered");
+				$("#container").hide();
+			}
+			else {
+		let url = "http://localhost:9000/api/fundTransferDetailsByAccNo?accNo="+number;
+		//console.log(url);
+		$.getJSON(url, function(response)//jquery 
+		{
+			$("#container").show();
+			var bene = response;
+		   //alert(JSON.stringify(response));
+			gettran(bene);
+		});
+		return true;
+	}}
+	function viewtran(){
+		event.preventDefault();
+		$("#container").hide();
+		//var number = document.getElementById("number").value;
+		let url = "http://localhost:9000/api/fundTransferDetails";
+		//console.log(url);
+		$.getJSON(url, function(response)//jquery 
+		{
+			$("#container").show();
+			var bene = response;
+		   //alert(JSON.stringify(response));
+			gettran(bene);
+		});
+		return true;
+	}
+	function gettran(bene){
+		$("#BeneTbl").empty();
+		var row = "";
+		var j=1;
+		for ( var i=0; i<bene.length; i++) {
+			var Obj = bene[i];
+			row = row + "<tr><td>"+j+"</td><td>" + Obj.transactionId + "</td><td>" + Obj.accNo + "</td><td>" + Obj.beneficiaryAccNo + "</td><td>" + Obj.transactionDate + "</td><td>" + Obj.transactionAmount + "</td><td>" + Obj.status + "</td></tr>";
+			//row = row + "<tr><td>"+j+"</td><td>" + Obj.transactionId + "</td><td>" + Obj.accNo + "</td><td>" + Obj.beneficiaryAccNo + "</td><td>" + Obj.beneficiaryAccNo + "</td><td>" + Obj.transactionDate + "</td><td>" + Obj.transactionAmount + "</td><td>" + Obj.beneficiaryAccNo + "</td><td>" + Obj.beneficiaryAccNo + "</td><td>" + Obj.transactionDate + "</td><td>" + Obj.transactionAmount + "</td></tr>";
+			j=j+1;    
+			}
+		//alert(row);
+		$("#BeneTbl").append(row);
+	}
+</script>	
+	</script>
+</html>

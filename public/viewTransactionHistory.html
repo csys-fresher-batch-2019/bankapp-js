@@ -1,0 +1,57 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<title>Transaction Details</title>
+<h3>
+	<center>Transaction Details</center>
+</h3>
+</head>
+<style>
+	body {
+	background-color:#34b5c9;
+		}
+</style>
+<body>
+	<input type="button" onclick="viewtran()" value="press to view transactions"/>  
+	<a href="userpage.html" class="c">Back</a>
+
+<div id="container">
+	<table border="1" class="table table-bordered">
+		<thead><tr><th>S.No</th><th>Transaction id</th><th>Account Number</th><th>Beneficiary Account Number</th><th>Transaction Date</th><th>Transaction Amount</th><th>Status</th></tr></thead>
+		<tbody id="BeneTbl">
+		</tbody>
+	</table>
+	</div>	
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+	$("#container").hide();
+	function viewtran(){
+		//event.preventDefault();
+		$("#container").hide();
+	
+		let url = "http://localhost:9000/api/fundTransferDetails";
+		//console.log(url);
+		$.getJSON(url, function(response)//jquery 
+		{
+			$("#container").show();
+			var bene = response;
+		   //alert(JSON.stringify(response));
+			gettran(bene);
+		});
+		return true;
+	}
+	function gettran(bene){
+		$("#BeneTbl").empty();
+		var row = "";
+		var j=1;
+		for ( var i=0; i<bene.length; i++) {
+			var Obj = bene[i];
+			row = row + "<tr><td>"+j+"</td><td>" + Obj.transactionId + "</td><td>" + Obj.accNo + "</td><td>" + Obj.beneficiaryAccNo + "</td><td>" + Obj.transactionDate + "</td><td>" + Obj.transactionAmount + "</td><td>" + Obj.status + "</td></tr>";
+			j=j+1;    
+			}
+		//alert(row);
+		$("#BeneTbl").append(row);
+	}
+</script>	
+</html>

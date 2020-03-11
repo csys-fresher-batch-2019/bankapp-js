@@ -1,0 +1,89 @@
+<!DOCTYPE html5>
+<html>
+
+<head>
+	<title>beneficiary Details</title>
+	<h3>
+		<center>Beneficiary Details</center>
+	</h3>
+</head>
+<style>
+	body {
+	background-color:#34b5c9;
+		}
+</style>
+
+<body>
+	<center>
+	<form onsubmit="viewbene()">
+		<br /> Enter Account Number:<input type="text" name="accNo" id="accNo" placeholder="Account Number">
+		<br/>
+		<br /> Enter IFSC Code:<input type="text" name="ifsc" id="ifsc" placeholder="IFSC Code">
+		<br/>
+		<br/>
+		<button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">Submit</button> 
+		<a href="userpage.html" class="c">Back</a>
+	</form>
+</center>
+	<div id="container">
+
+		<table border="1" class="table table-bordered">
+			<thead>
+				<tr>
+					<th>S.No</th>
+					<th>BeneficiaryName</th>
+					<th>Account No</th>
+					<th>iFSCCode</th>
+				</tr>
+			</thead>
+			<tbody id="BeneTbl">
+			</tbody>
+		</table>
+	</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+	$("#container").hide();
+	function viewbene() {
+		event.preventDefault();
+		$("#container").hide();
+		//Step 1: Get form values 
+		//var source=$("#source").val();//using jquery
+		// var source = document.getElementById("source").value;//using javascript
+		//var accNo = document.getElementById("accNO").value;
+		//var ifsc=document.getElementById("ifsc").value;
+		var accNo=$("#accNo").val();
+		var ifsc=$("#ifsc").val();
+		console.log(accNo);
+		console.log(ifsc);
+			//let url = "http://localhost:9000/api/listBeneDetailsByName?name=" + name;
+			let url="http://localhost:9000/api/listBeneDetailsByAccNoAndIfsc?acc="+accNo+"&ifsc="+ifsc;
+			//let url="http://localhost:9000/api/listBeneDetailsByAccNoAndIfsc?acc=2345678901&ifsc=CNRU6789";
+			console.log(url);
+			$.getJSON(url, function (response)//jquery 
+			{
+				$("#container").show();
+				var bene = response;
+				//alert(JSON.stringify(response));
+				getbene(bene);
+			});
+			return true;
+		
+	};
+
+
+	function getbene(bene) {
+		$("#BeneTbl").empty();
+		var row = "";
+		var j = 1;
+		for (var i = 0; i < bene.length; i++) {
+			var Obj = bene[i];
+			row = row + "<tr><td>" + j + "</td><td>" + Obj.beneficiaryName + "</td><td>" + Obj.accNo + "</td><td>" + Obj.iFSCCode + "</td></tr>";
+			j = j + 1;
+		}
+		//alert(row);
+		$("#BeneTbl").append(row);
+	}
+</script>
+
+</html>

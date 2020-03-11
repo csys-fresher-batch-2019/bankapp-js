@@ -1,0 +1,101 @@
+<!DOCTYPE html5>
+<html>
+
+<head>
+  <title>CreditCardPaymentList</title>
+  <h3>
+    <center>CreditCard Transaction History</center>
+  </h3>
+</head>
+<style>
+	body {
+	background-color: #99e3f3;
+		}
+</style>
+
+<body>
+  <button onclick="viewtran()">all credit card payment list</button>
+  <form onsubmit="viewpaylist()">
+    <br />
+    Enter CardId:<input type="number" id="number" name="number">
+    <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+      Submit
+    </button>
+    <a href="adminpage.html" class="c">Back</a>
+  </form>
+  <div id="container">
+    <table border="1" class="table table-bordered">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>TransactionId</th>
+          <th>CardId</th>
+          <th>Amount</th>
+          <th>Description</th>
+          <th>TransactionDate</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="BeneTbl">
+      </tbody>
+    </table>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+  $("#container").hide();
+  function viewpaylist() {
+    event.preventDefault();
+    $("#container").hide();
+    //Step 1: Get form values 
+    //var source=$("#source").val();//using jquery
+    // var source = document.getElementById("source").value;//using javascript
+    var number = document.getElementById("number").value;
+    if ((number == "")) {
+      alert("enter the card Id - card id is empty");
+      //$("#container").hide();
+    }
+    else {
+      let url = "http://localhost:9000/api/creditCardTransDetailsByCardId?cardId=" + number;
+      //console.log(url);
+      $.getJSON(url, function (response)//jquery 
+      {
+        $("#container").show();
+        var bene = response;
+        //alert(JSON.stringify(response));
+        getbene(bene);
+      });
+      return true;
+    }
+  }
+  $("#container").hide();
+  function viewtran(){
+	//	event.preventDefault();
+		$("#container").hide();
+		//var number = document.getElementById("number").value;
+		let url = "http://localhost:9000/api/creditCardTransDetails";
+		//console.log(url);
+		$.getJSON(url, function(response)//jquery 
+		{
+			$("#container").show();
+			var bene = response;
+		   //alert(JSON.stringify(response));
+			getbene(bene);
+		});
+		return true;
+	}
+  function getbene(bene) {
+    $("#BeneTbl").empty();
+    var row = "";
+    var j = 1;
+    for (var i = 0; i < bene.length; i++) {
+      var Obj = bene[i];
+      row = row + "<tr><td>" + j + "</td><td>" + Obj.transactionId + "</td><td>" + Obj.cardId + "</td><td>" + Obj.amount + "</td><td>" + Obj.merchantId + "</td><td>" + Obj.transactionDate + "</td><td>" + Obj.status + "</td></tr>";
+      j = j + 1;
+    }
+    //alert(row);
+    $("#BeneTbl").append(row);
+  }
+</script>
+
+</html>
