@@ -6,6 +6,8 @@
 	<h3>
 		<center>Account Details</center>
 	</h3>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <style>
 	body {
@@ -14,10 +16,10 @@
 </style>
 
 <body>
-	<button onclick="viewtran()">view all accounts</button>
+	
 	<form onsubmit="viewacclist()">
-		<br /> Enter AccNo:<input type="number" id="number" name="number">
-		<button type="submit">Submit</button>
+		<br /> Enter AccNo:<input type="number" id="number" name="number" required>
+		<button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">Submit</button>
 		<a href="adminpage.html" class="c">Back</a>
 	</form>
 	<div id="container">
@@ -38,14 +40,17 @@
 	</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script>
-		$("#container").hide();
+		$("#container").hide()
 		function viewacclist() {
 			event.preventDefault();
 			$("#container").hide();
 			var no = document.getElementById("number").value;
-			if ((no== "")) {
-				alert("account number not entered");
-				$("#container").hide();
+			let url = "http://localhost:9000/api/GetAccountNo?accNo="+no;
+			$.getJSON(url, function (response) {
+				var bene = response;
+			if(bene!=1){
+                alert("Account number entered is not available");
+					$("#container").hide();
 			}
 			else {
 				let url = "http://localhost:9000/api/listAccountDetailsByAccNo?accNo="+no;
@@ -58,9 +63,11 @@
 				});
 				return true;
 			}
-		}
+		});
+		return true;
+	}
 			function viewtran() {
-				event.preventDefault();
+				//event.preventDefault();
 				$("#container").hide();
 
 				var url = "http://localhost:9000/api/listAccountDetails";
@@ -85,6 +92,7 @@
 				//alert(row);
 				$("#BeneTbl").append(row);
 			}
+			viewtran();
 	</script>
 </body>
 

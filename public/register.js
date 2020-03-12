@@ -9,12 +9,14 @@ function register() {
     var url = "http://localhost:9000/api/register?accType=" + Accounttype + "&city=" + city + "&email=" + email + "&mbleNo=" + mobileNO + "&name=" + name + "&password=" + password + "&street=" + street;
     console.log(url);
     $.post(url, function (data) {
-        console.log(data)
-        if (data.infoMessage == "Login successsful") {
-            localStorage.setItem("Logged_in_user", JSON.stringify(formData));
-            window.location.href = "adminpage.html";
-         } else {
-            alert("Invalid Username 0r password");
+        console.log(data);
+        if (data.infoMessage == "Registered successfully") {
+            //localStorage.setItem("Logged_in_user", JSON.stringify(formData));
+            alert("Registered Successfully");
+            window.location.href = "index.html";
+        } else {
+            alert("Not registered");
+            window.location.href = "register.html"; 
         }
     });
 }

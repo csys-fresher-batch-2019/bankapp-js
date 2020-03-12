@@ -2,6 +2,8 @@
 <html>
 <head>
 <title>Transaction Details</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <h3>
 	<center>Transaction Details</center>
 </h3>
@@ -10,11 +12,12 @@
 	body {
 	background-color:#34b5c9;
 		}
+		button{
+			float: right;
+		}
 </style>
 <body>
-	<input type="button" onclick="viewtran()" value="press to view transactions"/>  
-	<a href="userpage.html" class="c">Back</a>
-
+	<br/>
 <div id="container">
 	<table border="1" class="table table-bordered">
 		<thead><tr><th>S.No</th><th>Transaction id</th><th>Account Number</th><th>Beneficiary Account Number</th><th>Transaction Date</th><th>Transaction Amount</th><th>Status</th></tr></thead>
@@ -22,6 +25,7 @@
 		</tbody>
 	</table>
 	</div>	
+<button onclick="window.location.href='userpage.html'" class="btn btn-primary" data-toggle="button" aria-pressed="false">Back</button>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
@@ -53,5 +57,6 @@
 		//alert(row);
 		$("#BeneTbl").append(row);
 	}
+	viewtran();
 </script>	
 </html>
