@@ -34,9 +34,12 @@
 		event.preventDefault();
 		$("#container").hide();
 		var number = document.getElementById("number").value;
-		if ((number == "")) {
-				alert("account number not entered");
-				$("#container").hide();
+		let url = "http://localhost:9000/api/GetAccountNo?accNo="+number;
+			$.getJSON(url, function (response) {
+				var bene = response;
+			if(bene!=1){
+                alert("Account number entered is not available");
+					$("#container").hide();
 			}
 			else {
 		let url = "http://localhost:9000/api/fundTransferDetailsByAccNo?accNo="+number;
@@ -49,7 +52,10 @@
 			gettran(bene);
 		});
 		return true;
-	}}
+	}
+		});
+		return true;
+	}
 	function viewtran(){
 		//event.preventDefault();
 		$("#container").hide();

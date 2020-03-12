@@ -54,7 +54,7 @@
     var number = document.getElementById("number").value;
     if ((number == "")) {
       alert("enter the card Id - card id is empty");
-      //$("#container").hide();
+      $("#container").hide();
     }
     else {
       let url = "http://localhost:9000/api/creditCardTransDetailsByCardId?cardId=" + number;
