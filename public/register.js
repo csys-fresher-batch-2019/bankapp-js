@@ -1,4 +1,5 @@
 function register() {
+    event.preventDefault();
     var name = document.getElementById("name").value;
     var street = document.getElementById("street").value;
     var city = document.getElementById("city").value;
@@ -10,13 +11,14 @@ function register() {
     console.log(url);
     $.post(url, function (data) {
         console.log(data);
-        if (data.infoMessage == "Registered successfully") {
+
+        if (data.errorMessage == "Failed to register") {
             //localStorage.setItem("Logged_in_user", JSON.stringify(formData));
-            alert("Registered Successfully");
-            window.location.href = "index.html";
-        } else {
-            alert("Not registered");
+         alert("Not registered");
             window.location.href = "register.html"; 
+        } else {
+            alert(data.infoMessage);
+            window.location.href = "index.html";
         }
     });
 }

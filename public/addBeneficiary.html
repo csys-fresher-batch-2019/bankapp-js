@@ -6,7 +6,7 @@
 		<center>Add Beneficiary</center>
 	</h3>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
 </head>
 <style>
 	body {
@@ -22,8 +22,8 @@
 			<br /> Enter Account Number:<input type="number" name="acc" id="acc" readonly> <br /> <br /> Enter
 			Beneficiary
 			Name:<input type="text" name="name" id="name" placeholder="Beneficiary Name" required autofocus> <br />
-			<br /> Enter Account No:<input type="number" name="accNo" id="accNo" placeholder="Account Number" required>
-			<br /> <br /> Enter IFSC Code:<input type="text" name="ifsc" id="ifsc" placeholder="IFSC Code" required>
+			<br /> Enter Account No:<input type="number" name="accNo" id="accNo" placeholder="Account Number" pattern="^[0-9]{10}|[0-9]{11}|[0-9]{12}$" required>
+			<br /> <br /> Enter IFSC Code:<input type="text" name="ifsc" id="ifsc" placeholder="IFSC Code" pattern="[A-Z|a-z]{4}[0][\d]{6}$" required>
 			<br /> <br />
 
 			<font color="red" style="font-size: 20"></font>
@@ -34,6 +34,7 @@
 			<a href="userpage.html">Back</a>
 		</form>
 	</center>
+</body>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="addbene.js"></script>
@@ -43,6 +44,6 @@
 		console.log(accNo);
 		$("#acc").val(accNo);
 	</script>
-</body>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </html>
