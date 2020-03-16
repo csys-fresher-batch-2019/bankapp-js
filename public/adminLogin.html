@@ -11,6 +11,9 @@
 	body {
 	background-color: #99e3f3;
 		}
+    #text {
+			display:none;color:red
+	    }
 </style>
 <body>
 	<center>
@@ -19,10 +22,10 @@
 
 Enter Username:	<input type="text" id="name" name="name" placeholder="Enter Username" required autofocus>
 			<br />
-Enter Password: <input type="password" id="pin" name="pin" placeholder="Enter password" onkeypress="capLock(event)" required>
+Enter Password: <input type="password" id="pin" name="pin" placeholder="Enter password" onkeypress="capLock()" required>
 			
- <input type="checkbox" onclick="myFunction()">Show Password 
-<div id="divMayus" style="visibility:hidden;margin-top:15px;color:red;">Caps Lock is on.</div>
+ <input type="checkbox" onclick="showPassword()">Show Password 
+ <p id="text">Caps lock is ON.</p>
 <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">Submit</button>
 			
 <a href="index.html">Back</a>
@@ -35,6 +38,8 @@ Enter Password: <input type="password" id="pin" name="pin" placeholder="Enter pa
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script src="admin.js"></script>
+	<script src="capsLock.js"></script>
+	<script src="showPassword.js"></script>
 </body>
 
 

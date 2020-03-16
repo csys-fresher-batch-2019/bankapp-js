@@ -1,4 +1,4 @@
-function fundtransfer() {
+ function fundtransfer() {
    // event.preventDefault();
     var accNo = sessionStorage.getItem("accountNumber");
     var beneAccNo = document.getElementById("beneAccNo").value;
@@ -21,3 +21,4 @@ function validate(){
         alert("Invalid Account Number");
     }
 }
+
