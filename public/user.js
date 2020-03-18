@@ -1,4 +1,4 @@
-function userlogin() {
+function userLogin() {
     event.preventDefault();
     var name = document.getElementById("name").value;
     var password = document.getElementById("pin").value;

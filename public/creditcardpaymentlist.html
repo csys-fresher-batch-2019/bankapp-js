@@ -15,13 +15,13 @@
 </style>
 
 <body>
-  <form onsubmit="viewpaylist()">
+  <form onsubmit="searchCardId()">
     <br />
     Enter CardId:<input type="number" id="number" name="number" required>
     <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
       Submit
     </button>
-    <a href="adminpage.html" class="c">Back</a>
+    <a href="AdminPage.html" class="c">Back</a>
   </form>
   <div id="container">
     <table border="1" class="table table-bordered">
@@ -44,7 +44,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
   $("#container").hide();
-  function viewpaylist() {
+  function searchCardId() {
     event.preventDefault();
     $("#container").hide();
     //Step 1: Get form values 
@@ -63,13 +63,13 @@
         $("#container").show();
         var bene = response;
         //alert(JSON.stringify(response));
-        getbene(bene);
+        showContent(bene);
       });
       return true;
     }
   }
   $("#container").hide();
-  function viewtran(){
+  function getContent(){
 	//	event.preventDefault();
 		$("#container").hide();
 		//var number = document.getElementById("number").value;
@@ -80,15 +80,16 @@
 			$("#container").show();
 			var bene = response;
 		   //alert(JSON.stringify(response));
-			getbene(bene);
+			showContent(bene);
 		});
 		return true;
 	}
-  function getbene(bene) {
+  function showContent(bene) {
     if(bene=="")
 		{
 			$("#container").hide();
-			alert("NO RECORDS FOUND");
+      alert("NO RECORDS FOUND");
+      window.location.href = "AdminPage.html";
 		}
 		else{
     $("#BeneTbl").empty();
@@ -103,7 +104,7 @@
     $("#BeneTbl").append(row);
   }
 }
-  viewtran();
+  getContent();
 </script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </html>

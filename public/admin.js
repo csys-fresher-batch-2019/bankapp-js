@@ -1,4 +1,4 @@
-function adminlogin() {
+function adminLogin() {
    event.preventDefault();
     var name = document.getElementById("name").value;
     var password = document.getElementById("pin").value;
@@ -10,7 +10,7 @@ function adminlogin() {
         console.log(data.infoMessage);
         if (data.infoMessage == "Login successsful") {
             localStorage.setItem("Logged_in_user", JSON.stringify(formData));
-            window.location.href = "adminpage.html";
+            window.location.href = "AdminPage.html";
          } else {
             alert("Invalid Username 0r password");
         }

@@ -1,4 +1,4 @@
- function fundtransfer() {
+ function fundTransfer() {
    // event.preventDefault();
     var accNo = sessionStorage.getItem("accountNumber");
     var beneAccNo = document.getElementById("beneAccNo").value;
@@ -8,7 +8,15 @@
     var url = "http://localhost:9000/api/fundTransfer?accNo=" + accNo + "&amount=" + amount + "&beneAccNo=" + beneAccNo;
     console.log(url);
     $.post(url, function (data) {
-        console.log("entered loop");
+        console.log(data);
+        if(data.infoMessage="Transaction successful"){
+            alert("Transaction Successful");
+            window.location.href='UserPage.html';
+                }else{
+                    alert("Transaction not successful");
+                    window.location.href='UserPage.html';
+                }
+        
     });
 }
 function validate(){
@@ -16,7 +24,7 @@ function validate(){
     var accNo = $("#beneAccNo").val();
     // console.log(accNo.length);
     if(accNo.length == 10){
-        fundtransfer();
+        fundTransfer();
     }else{
         alert("Invalid Account Number");
     }
