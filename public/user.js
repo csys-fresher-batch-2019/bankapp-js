@@ -18,7 +18,7 @@ function userLogin() {
                 console.log(accDetails);
                 sessionStorage.setItem("accountNumber", accDetails.accNo);
                 sessionStorage.setItem("availableBalance", accDetails.availableBalance);
-                window.location.href = "userpage.html";
+                window.location.href = "UserPage.html";
             });
         } else {
             alert("Invalid Username 0r password");
